@@ -17,7 +17,7 @@ By default, this plugin will capture the attendance of all the participants in a
 
 * Go to the extension options page by clicking the extension popup button, and then clicking *Manage classes and meetings*.
 * Click *New classroom*. You will see a popup.
-* Write a name for the new classroom. In the Google Meet code textbox, write down the last hyphenated part of the Google Meet link of your class (e.g. if the class link is meet.google.com/aaa-bbbb-ccc, then the Google Meet code will be *aaa-bbbb-ccc*).
+* Write a name for the new classroom. In the Google Meet code textbox, write down the last hyphenated part of the Google Meet link of your class (e.g. if the class link is *meet.google.com/aaa-bbbb-ccc*, then the Google Meet code will be *aaa-bbbb-ccc*).
 * In the Participants textbox, you have to put the names of the participants. Download the *Section wise Phone* Excel sheet for your class from UCAM, open it, copy the IDs, photos and names from the sheet, and paste it in the textbox.
 * Click *Save*. Your students' info is now saved.
 
