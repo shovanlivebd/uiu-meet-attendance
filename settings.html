@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>UIU Google Meet Attendance | Settings</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap/bootstrap.min.css">
+</head>
+<body style="padding-top:70px">
+
+<nav class="navbar fixed-top navbar-light bg-light">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="#" onclick="return false;">UIU Google Meet Attendance</a>
+	</div>
+</nav>
+
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<ul class="nav nav-tabs mb-3">
+				<li class="nav-item"><a href="#" id="tab-classrooms" class="nav-link active">Classrooms</a></li>
+				<li class="nav-item"><a href="#" id="tab-attendance" class="nav-link">Attendance records</a></li>
+			</ul>
+			
+			<div id="content-classrooms">
+				<div id="classrooms-list" class="row"></div>
+				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new-classroom-modal">New classroom</button>
+			</div>
+
+			<div id="content-attendance" class="d-none">
+				<!--<pre id="attn-object"></pre>-->
+				<div id="records-list"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="new-classroom-modal" tabindex="-1" aria-labelledby="new-classroom-modal-title" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 id="new-classroom-modal-title" class="modal-title">Enter classroom information</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="mb-3">
+					<label for="txtClassroomName" class="form-label">Name</label>
+					<span class="text-danger">*</span>
+					<input type="text" id="txtClassroomName" class="form-control">
+				</div>
+				<div class="mb-3">
+					<input type="hidden" id="txtClassroomOldCode">
+					<label for="txtClassroomMeetCode" class="form-label">Google Meet code</label>
+					<span class="text-danger">*</span>
+					<input type="text" id="txtClassroomMeetCode" class="form-control">
+				</div>
+				<div class="mb-3">
+					<label for="txtClassroomParticipants" class="form-label">Participants</label>
+					<textarea id="txtClassroomParticipants" class="form-control" style="height:200px"></textarea>
+					<div id="participants-help" class="form-text d-none">You can copy-paste information of all students as well as new students only.</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" id="btnClassroomSave" class="btn btn-primary">Save</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="meeting-record-modal" tabindex="-1" aria-labelledby="meeting-record-modal-title" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 id="meeting-record-modal-title" class="modal-title">Manage attendances</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<h6>Absent</h6>
+				<table id="absent-table" class="table table-striped">
+					<thead>
+						<tr>
+							<th>Student ID</th>
+							<th>Name</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+				<h6>Unregistered/outsider</h6>
+				<table id="unregistered-table" class="table table-striped align-middle">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Alias of</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+			<!--<div class="modal-footer">
+				<button type="button" id="btnClassroomSave" class="btn btn-primary">Save</button>
+			</div>-->
+		</div>
+	</div>
+</div>
+
+<script src="bootstrap/bootstrap.bundle.min.js"></script>
+<script src="functions.js"></script>
+<script src="attendance.js"></script>
+<script src="settings.js"></script>
+
+</body>
+</html>

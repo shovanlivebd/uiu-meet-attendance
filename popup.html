@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>UIU Google Meet Attendance | Settings</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap/bootstrap.min.css">
+</head>
+
+<body style="width:500px">
+
+<div class="p-3 pb-0">
+	<div id="content-attendance">
+		<h6>Recent meetings</h6>
+		<div id="records-list"></div>
+	</div>
+	<div id="content-meeting-info" class="d-none">
+		<button type="button" id="btnBack" class="btn btn-primary mb-3">&larr; Go back</button>
+		<h6>Absent</h6>
+		<table id="absent-table" class="table table-striped">
+			<thead>
+				<tr>
+					<th>Student ID</th>
+					<th>Name</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<h6>Unregistered/outsider</h6>
+		<table id="unregistered-table" class="table table-striped align-middle">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Alias of</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<button type="button" id="btnSendAttendance" class="btn btn-primary">Send attendance</button>
+		<button type="button" id="btnReset" class="btn btn-outline-primary">Reset</button>
+	</div>
+	<hr>
+	<div class="mb-3">
+		<button type="button" id="btnOptions" class="btn btn-success">Manage classes and meetings</button>
+	</div>
+</div>
+
+<div id="alert" class="d-none" style="position:absolute;top:0;bottom:0;left:0;right:0;background:rgba(0,0,0,0.5)">
+	<div class="d-flex flex-column justify-content-center align-items-middle h-100">
+		<div class="mx-3 p-3 bg-white text-center">
+			<div id="alert-text" class="mb-2"></div>
+			<hr class="my-2">
+			<button type="button" id="btnAlertOk" class="btn btn-primary btn-sm">Okay</button>
+		</div>
+	</div>
+</div>
+
+<script src="bootstrap/bootstrap.bundle.min.js"></script>
+<script src="attendance.js"></script>
+<script src="popup.js"></script>
+
+</body>
+</html>

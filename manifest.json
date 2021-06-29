@@ -1,0 +1,23 @@
+{
+	"name": "UIU Google Meet Attendance",
+	"description": "This extension takes attendance from Google Meet classroom, and integrates with UIU UCAM for auto-input of attendance records.",
+	"version": "1.0",
+	"manifest_version": 3,
+
+	"content_scripts": [
+		{
+			"matches": ["*://meet.google.com/*"],
+			"js": ["meet.js"]
+		},
+		{
+			"matches": ["*://ucam.uiu.ac.bd/ClassAttendance/*"],
+			"js": ["ucam.js"]
+		}
+	],
+	"action": {
+		"default_popup": "popup.html"
+	},
+	"options_page": "settings.html",
+
+	"permissions": ["storage", "tabs"]
+}
