@@ -59,7 +59,7 @@ document.addEventListener('click', function(e) {
 		if(confirm('Are you sure? You cannot undo this action.')) {
 			var meetcode = e.target.getAttribute('data-meetcode');
 			delete classrooms[meetcode];
-			chrome.storage.sync.set({ 'classrooms': classrooms }, function() {
+			chrome.storage.local.set({ 'classrooms': classrooms }, function() {
 				classroomRefresh();
 				meetingRecordRefresh();
 			});
@@ -68,7 +68,7 @@ document.addEventListener('click', function(e) {
 		if(confirm('Are you sure? You cannot undo this action.')) {
 			var index = e.target.getAttribute('data-index');
 			records.splice(index, 1);
-			chrome.storage.sync.set({ 'attendances': records }, function() {
+			chrome.storage.local.set({ 'attendances': records }, function() {
 				meetingRecordRefresh();
 			})
 		}
@@ -91,7 +91,7 @@ document.querySelector('#new-classroom-modal').addEventListener('hidden.bs.modal
 });
 
 function classroomRefresh() {
-	chrome.storage.sync.get(['classrooms'], function(result) {
+	chrome.storage.local.get(['classrooms'], function(result) {
 		classrooms = result['classrooms'];
 		var list = document.querySelector('#classrooms-list');
 
@@ -108,7 +108,7 @@ function classroomRefresh() {
 }
 
 function meetingRecordRefresh() {
-	chrome.storage.sync.get(['attendances'], function(result) {
+	chrome.storage.local.get(['attendances'], function(result) {
 		records = result['attendances'];
 		showMeetingList(classrooms, records);
 	});

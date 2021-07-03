@@ -69,9 +69,9 @@ function mergeMeetings(meetings, index, callback = null) {
 	meetings[index - 1]['attendance'] = meetings[index - 1]['attendance'].concat(meetings[index]['attendance']);
 	meetings.splice(index, 1);
 	if(typeof callback == 'function') {
-		chrome.storage.sync.set({ 'attendances': meetings }, callback);
+		chrome.storage.local.set({ 'attendances': meetings }, callback);
 	} else {
-		chrome.storage.sync.set({ 'attendances': meetings });
+		chrome.storage.local.set({ 'attendances': meetings });
 	}
 }
 
@@ -87,7 +87,7 @@ function saveNewAlias(row, classes, meetings) {
 	}
 
 	classes[meetcode]['participants'][pname] = id;
-	chrome.storage.sync.set({ 'classrooms': classes }, function() {
+	chrome.storage.local.set({ 'classrooms': classes }, function() {
 		showAttendanceReport(classes, meetings, index, meetcode);
 	});
 }

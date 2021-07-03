@@ -19,5 +19,5 @@
 	},
 	"options_page": "settings.html",
 
-	"permissions": ["storage", "tabs"]
+	"permissions": ["storage", "unlimitedStorage", "tabs"]
 }

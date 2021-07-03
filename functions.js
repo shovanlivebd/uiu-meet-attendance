@@ -6,7 +6,7 @@ function classroomSave(name, meetcode, participantsText, oldcode, callback) {
 		entries[item[2]] = item[1];
 	}
 
-	chrome.storage.sync.get(['classrooms'], function(result) {
+	chrome.storage.local.get(['classrooms'], function(result) {
 		if(result['classrooms'] == undefined) { // No database, create new
 			var classroom = {
 				'name': name,
@@ -17,9 +17,9 @@ function classroomSave(name, meetcode, participantsText, oldcode, callback) {
 			table[meetcode] = classroom;
 
 			if(typeof callback == 'function') {
-				chrome.storage.sync.set({ 'classrooms': table }, callback);
+				chrome.storage.local.set({ 'classrooms': table }, callback);
 			} else {
-				chrome.storage.sync.set({ 'classrooms': table });
+				chrome.storage.local.set({ 'classrooms': table });
 			}
 		} else {
 			var participants;
@@ -47,9 +47,9 @@ function classroomSave(name, meetcode, participantsText, oldcode, callback) {
 			result['classrooms'][meetcode] = classroom;
 
 			if(typeof callback == 'function') {
-				chrome.storage.sync.set({ 'classrooms': result['classrooms'] }, callback);
+				chrome.storage.local.set({ 'classrooms': result['classrooms'] }, callback);
 			} else {
-				chrome.storage.sync.set({ 'classrooms': result['classrooms'] });
+				chrome.storage.local.set({ 'classrooms': result['classrooms'] });
 			}
 		}
 	});

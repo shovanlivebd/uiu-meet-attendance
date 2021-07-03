@@ -23,7 +23,7 @@ document.addEventListener('click', function(e) {
 		if(confirm('Are you sure? You cannot undo this action.')) {
 			var index = e.target.getAttribute('data-index');
 			records.splice(index, 1);
-			chrome.storage.sync.set({ 'attendances': records }, function() {
+			chrome.storage.local.set({ 'attendances': records }, function() {
 				meetingRecordRefresh();
 			})
 		}
@@ -41,6 +41,15 @@ btnSendAttendance.addEventListener('click', async() => {
 		sendAttendance(tab);
 	} else {
 		showAlert('Please go to UIU UCAM attendance entry/update page.');
+	}
+});
+
+btnForceSave.addEventListener('click', async() => {
+	let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+	if(tab.url.includes('meet.google.com')) {
+		chrome.tabs.sendMessage(tab.id, {forceSave: "forceSave"});
+	} else {
+		showAlert('Please go to a Google Meet meeting for this action.');
 	}
 });
 
@@ -62,13 +71,13 @@ btnOptions.addEventListener('click', function(e) {
 })
 
 function classroomRefresh() {
-	chrome.storage.sync.get(['classrooms'], function(result) {
+	chrome.storage.local.get(['classrooms'], function(result) {
 		classrooms = result['classrooms'];
 	});
 }
 
 function meetingRecordRefresh() {
-	chrome.storage.sync.get(['attendances'], function(result) {
+	chrome.storage.local.get(['attendances'], function(result) {
 		records = result['attendances'];
 		showMeetingList(classrooms, records);
 	});

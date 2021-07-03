@@ -47,6 +47,12 @@ var documentObserver = new MutationObserver(function(mutations, me) {
 	}
 });
 
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+	if('forceSave' in message) {
+		cleanAttendanceList();
+	}
+});
+
 documentObserver.observe(document.querySelector('c-wiz'), { childList: true, subtree: true });
 
 function initAttendanceList(container) {
@@ -78,15 +84,15 @@ function cleanAttendanceList() {
 		}
 	}
 
-	chrome.storage.sync.get(['attendances'], function(result) {
+	chrome.storage.local.get(['attendances'], function(result) {
 		if(result['attendances'] == undefined) {
 			/*var entry = {};
 			entry[classid] = makeEntry();*/
 			var array = [ makeEntry() ];
-			chrome.storage.sync.set({ 'attendances' : array });
+			chrome.storage.local.set({ 'attendances' : array });
 		} else {
 			result['attendances'].push(makeEntry());
-			chrome.storage.sync.set({ 'attendances' : result['attendances'] });
+			chrome.storage.local.set({ 'attendances' : result['attendances'] });
 		}
 	})
 }
@@ -110,12 +116,16 @@ function addAttendance(node) {
 }
 
 function removeAttendance(node) {
-	if(node.querySelector('.QMC9Zd') == null) {
+	if(node.querySelector('.QMC9Zd') == null && node.querySelector('.jcGw9c') == null) {
 		var now = new Date();
 		var id = node.dataset.participantId;
 		
 		delete participants[id];
-		attendance[indices[id]]['leaving_time'] = now.toLocaleString();
+		if(attendance[indices[id]] == undefined) {
+			console.log('ERROR :: id = ' + id + ', index = ' + indices[id]);
+		} else {
+			attendance[indices[id]]['leaving_time'] = now.toLocaleString();
+		}
 	}
 	console.log(participants);
 	console.log(attendance);
