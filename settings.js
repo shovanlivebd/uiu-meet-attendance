@@ -54,7 +54,7 @@ document.addEventListener('click', function(e) {
 		});
 	} else if(e.target && e.target.classList.contains('alias-save')) {
 		e.preventDefault();
-		saveNewAlias(e.target.closest('tr'), classrooms);
+		saveNewAlias(e.target.closest('tr'), classrooms, records);
 	} else if(e.target && e.target.classList.contains('classroom-delete-button')) {
 		if(confirm('Are you sure? You cannot undo this action.')) {
 			var meetcode = e.target.getAttribute('data-meetcode');

@@ -41,7 +41,7 @@ function showAttendanceReport(classes, meetings, index, meetcode) {
 			var id = classes[meetcode]['participants'][pname];
 			var i = ids.indexOf(id);
 			present[i] = 1;
-		} else {
+		} else if(!notfound.includes(pname)) {
 			notfound.push(pname);
 		}
 	}
@@ -52,6 +52,9 @@ function showAttendanceReport(classes, meetings, index, meetcode) {
 		}
 	}
 
+	if(document.querySelector('#json-attn') != null) {
+		document.querySelector('#json-attn').value = JSON.stringify(meeting['attendance']);
+	}
 	document.querySelector('#absent-table tbody').innerHTML = '';
 	for(var id of absent) {
 		var pname = Object.keys(classes[meetcode]['participants']).find(key => classes[meetcode]['participants'][key] == id);

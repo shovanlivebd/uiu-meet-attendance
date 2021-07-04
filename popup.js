@@ -44,14 +44,16 @@ btnSendAttendance.addEventListener('click', async() => {
 	}
 });
 
-/*btnForceSave.addEventListener('click', async() => {
-	let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-	if(tab.url.includes('meet.google.com')) {
-		chrome.tabs.sendMessage(tab.id, {forceSave: "forceSave"});
-	} else {
-		showAlert('Please go to a Google Meet meeting for this action.');
-	}
-});*/
+if(document.querySelector('#btnForceSave') != null) {
+	btnForceSave.addEventListener('click', async() => {
+		let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+		if(tab.url.includes('meet.google.com')) {
+			chrome.tabs.sendMessage(tab.id, {forceSave: "forceSave"});
+		} else {
+			showAlert('Please go to a Google Meet meeting for this action.');
+		}
+	});
+}
 
 btnReset.addEventListener('click', async() => {
 	let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
